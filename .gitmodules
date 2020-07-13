@@ -1,0 +1,3 @@
+[submodule "NYC COVID Details"]
+	path = NYC COVID Details
+	url = https://github.com/mvcostanzo/coronavirus-data
