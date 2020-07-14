@@ -8,7 +8,8 @@ Created on Sat Jul 11 20:21:12 2020
 import pandas as pd
 import numpy as np
     
-populationData = pd.read_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\County Population Data.csv', encoding='latin1')
+populationData = pd.read_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\County Population Data.csv', encoding='latin1', dtype={'STATE':'string', 'COUNTY': 'string'})
 populationData['County Name'] = np.where(populationData["STNAME"] != 'Louisiana', populationData['CTYNAME'].replace(r" County", "", regex=True), populationData['CTYNAME'])
 populationData['County Name'] = np.where(populationData["STNAME"] == 'Louisiana', populationData['CTYNAME'].replace(r" Parish", "", regex=True), populationData['County Name'])
+populationData['FIPS'] =  populationData['STATE'].astype(str) + populationData['COUNTY'].astype(str)
 populationData.to_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\County Population Data (Modified).csv', index=False)
