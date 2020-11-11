@@ -8,7 +8,7 @@ Created on Mon Jul 13 10:02:06 2020
 import pandas as pd
 
 covidData = pd.read_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\us-counties.csv')
-NYCcovidData = pd.read_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\NYC COVID Details\\boro\\boroughs-case-hosp-death.csv')
+NYCcovidData = pd.read_csv('C:\\Michael_Docs\\Git Repositories\\NY Times COVID Data\\NYC COVID Details\\trends\\data-by-day.csv')
 
 #Drop the NYC aggregate from the NYT data
 covidData.drop(covidData.loc[covidData['county']=='New York City'].index, inplace=True)
@@ -37,15 +37,15 @@ for rowindex, row in NYCcovidData.iterrows():
         staten_island_cases = staten_island_cases + row['SI_CASE_COUNT']
         staten_island_deaths = staten_island_deaths + row['SI_DEATH_COUNT']
         
-        NYC_DataFrame = NYC_DataFrame.append({'date': row['DATE_OF_INTEREST'], 'county': 'New York', 'state': 'New York', 'fips': 36061, 
+        NYC_DataFrame = NYC_DataFrame.append({'date': row['date_of_interest'], 'county': 'New York', 'state': 'New York', 'fips': 36061, 
                               'cases': manhattan_cases , 'deaths': manhattan_deaths}, ignore_index=True)
-        NYC_DataFrame = NYC_DataFrame.append({'date': row['DATE_OF_INTEREST'], 'county': 'Bronx', 'state': 'New York', 'fips': 36005, 
+        NYC_DataFrame = NYC_DataFrame.append({'date': row['date_of_interest'], 'county': 'Bronx', 'state': 'New York', 'fips': 36005, 
                               'cases': bronx_cases , 'deaths': bronx_deaths }, ignore_index=True)
-        NYC_DataFrame = NYC_DataFrame.append({'date': row['DATE_OF_INTEREST'], 'county': 'Kings', 'state': 'New York', 'fips': 36047, 
+        NYC_DataFrame = NYC_DataFrame.append({'date': row['date_of_interest'], 'county': 'Kings', 'state': 'New York', 'fips': 36047, 
                               'cases': brooklyn_cases, 'deaths': brooklyn_deaths }, ignore_index=True)
-        NYC_DataFrame = NYC_DataFrame.append({'date': row['DATE_OF_INTEREST'], 'county': 'Queens', 'state': 'New York', 'fips': 36081, 
+        NYC_DataFrame = NYC_DataFrame.append({'date': row['date_of_interest'], 'county': 'Queens', 'state': 'New York', 'fips': 36081, 
                               'cases': queens_cases, 'deaths': queens_deaths }, ignore_index=True)
-        NYC_DataFrame = NYC_DataFrame.append({'date': row['DATE_OF_INTEREST'], 'county': 'Richmond', 'state': 'New York', 'fips': 36085, 
+        NYC_DataFrame = NYC_DataFrame.append({'date': row['date_of_interest'], 'county': 'Richmond', 'state': 'New York', 'fips': 36085, 
                               'cases': staten_island_cases , 'deaths': staten_island_deaths}, ignore_index=True)
         
 #Write the NYC Data to the folder for appending in a Tableau Union
